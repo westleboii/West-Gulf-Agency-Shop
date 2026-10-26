@@ -1,0 +1,6 @@
+{
+  "name": "West Gulf Agency Shop",
+  "description": "UAE luxury dropshipping mega-store offering seasonal high-end fashion, mobility & electronics, wellness & home goods, and culinary furnishings with bilingual EN/AR support, loyalty rewards, and admin product scraping.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

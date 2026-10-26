@@ -1,0 +1,399 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Customer profile, loyalty tier, points balance, referral code, and notification preferences.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 150
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30
+        },
+        "loyaltyPoints": {
+          "type": "number"
+        },
+        "loyaltyTier": {
+          "type": "string",
+          "enum": ["Pearl", "Gold", "Royal Emirate"]
+        },
+        "referralCode": {
+          "type": "string",
+          "maxLength": 32,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "pushNotifications": {
+          "type": "boolean"
+        },
+        "promoNotifications": {
+          "type": "boolean"
+        },
+        "preferredLang": {
+          "type": "string",
+          "enum": ["en", "ar"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "email",
+        "loyaltyPoints",
+        "loyaltyTier",
+        "referralCode",
+        "pushNotifications",
+        "promoNotifications",
+        "preferredLang",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ShippingAddress": {
+      "title": "ShippingAddress",
+      "description": "Saved UAE shipping address belonging to a specific user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "recipientName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 30
+        },
+        "emirate": {
+          "type": "string",
+          "enum": [
+            "Dubai",
+            "Abu Dhabi",
+            "Sharjah",
+            "Ajman",
+            "Ras Al Khaimah",
+            "Fujairah",
+            "Umm Al Quwain"
+          ]
+        },
+        "area": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "streetBuilding": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "isDefault": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "label",
+        "recipientName",
+        "phone",
+        "emirate",
+        "area",
+        "streetBuilding",
+        "isDefault",
+        "createdAt"
+      ]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Dropshipped product available for UAE delivery.",
+      "type": "object",
+      "properties": {
+        "titleEn": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "titleAr": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "category": {
+          "type": "string",
+          "enum": ["fashion", "electronics", "wellness", "kitchen"]
+        },
+        "subCategory": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "priceAed": {
+          "type": "number"
+        },
+        "supplierName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "supplierUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "draft", "archived"]
+        },
+        "createdBy": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "titleEn",
+        "titleAr",
+        "category",
+        "subCategory",
+        "priceAed",
+        "supplierName",
+        "supplierUrl",
+        "status",
+        "createdBy",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer product review and rating under a product.",
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "authorName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "rating": {
+          "type": "number"
+        },
+        "comment": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 600
+        },
+        "status": {
+          "type": "string",
+          "enum": ["approved", "pending", "rejected"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "productId",
+        "authorId",
+        "authorName",
+        "rating",
+        "comment",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer order shipped within the United Arab Emirates.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "customerEmail": {
+          "type": "string",
+          "maxLength": 150
+        },
+        "emirate": {
+          "type": "string",
+          "enum": [
+            "Dubai",
+            "Abu Dhabi",
+            "Sharjah",
+            "Ajman",
+            "Ras Al Khaimah",
+            "Fujairah",
+            "Umm Al Quwain"
+          ]
+        },
+        "shippingAddress": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 300
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["PayTabs", "Telr", "ApplePay", "COD", "IntlCard"]
+        },
+        "totalAed": {
+          "type": "number"
+        },
+        "itemSummary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "itemCount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending_approval",
+            "approved_processing",
+            "dispatched_uae_hub",
+            "out_for_delivery",
+            "delivered",
+            "cancelled"
+          ]
+        },
+        "trackingCode": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "pointsEarned": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "customerName",
+        "customerEmail",
+        "emirate",
+        "shippingAddress",
+        "paymentMethod",
+        "totalAed",
+        "itemSummary",
+        "itemCount",
+        "status",
+        "trackingCode",
+        "pointsEarned",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminRole": {
+      "title": "AdminRole",
+      "description": "Marker document for administrator privileges.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "grantedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "grantedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Customer profile and loyalty account."
+    },
+    "/users/{userId}/addresses/{addressId}": {
+      "schema": { "$ref": "#/entities/ShippingAddress" },
+      "description": "Saved UAE delivery addresses for a specific user."
+    },
+    "/products/{productId}": {
+      "schema": { "$ref": "#/entities/Product" },
+      "description": "Storefront dropshipped product catalog."
+    },
+    "/products/{productId}/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/Review" },
+      "description": "Customer reviews for a specific product."
+    },
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders and real-time UAE tracking status."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRole" },
+      "description": "Administrator privilege lookup records."
+    }
+  }
+}
